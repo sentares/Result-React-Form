@@ -1,0 +1,246 @@
+.InputWrapper {
+	display: flex;
+	flex-direction: column;
+
+	&.size_sm {
+		.Label,
+		.LeftSection,
+		.RightSection {
+			font-size: 12px;
+			color: var(--primary-color-dark);
+
+			svg {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		.Description,
+		.Error {
+			font-size: 12px;
+		}
+
+		.Input {
+			font-size: 12px;
+			padding: 0.25rem 0.5rem;
+		}
+
+		.InputContainer .Input {
+			padding-left: 1.75rem;
+			padding-right: 1.75rem;
+		}
+	}
+
+	&.size_md {
+		.Label,
+		.LeftSection,
+		.RightSection {
+			font-size: 14px;
+			color: var(--primary-color-dark);
+
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+
+		.Description,
+		.Error {
+			font-size: 12px;
+		}
+
+		.Input {
+			font-size: 14px;
+			padding: 0.5rem 0.75rem;
+		}
+
+		.InputContainer .Input {
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+	}
+
+	&.size_lg {
+		.Label,
+		.LeftSection,
+		.RightSection {
+			font-size: 16px;
+			color: var(--primary-color-dark);
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+
+		.Description,
+		.Error {
+			font-size: 14px;
+		}
+
+		.Input {
+			font-size: 16px;
+			padding: 0.75rem 1rem;
+		}
+
+		.InputContainer .Input {
+			padding-left: 2.25rem;
+			padding-right: 2.25rem;
+		}
+	}
+
+	&.radius_none {
+		.Input,
+		.LeftSection,
+		.RightSection {
+			border-radius: 0;
+		}
+	}
+
+	&.radius_sm {
+		.Input {
+			border-radius: 4px;
+		}
+	}
+
+	&.radius_md {
+		.Input {
+			border-radius: 8px;
+		}
+	}
+
+	&.radius_lg {
+		.Input {
+			border-radius: 12px;
+		}
+	}
+}
+
+.InputWrapper.error {
+	.Error,
+	.Input,
+	.LeftSection,
+	.RightSection {
+		border-color: var(--destructive-color) !important;
+		color: var(--destructive-color) !important;
+	}
+
+	.Label {
+		color: var(--light-text-color);
+	}
+}
+
+.InputWrapper.disabled {
+	.Input {
+		opacity: 0.5;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	.LeftSection,
+	.RightSection {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
+
+.Label {
+	font-weight: 600;
+	color: var(--light-text-color);
+}
+
+.Description {
+	padding: 0;
+}
+
+.InputContainer {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.Input {
+	margin-top: 4px;
+	width: 100%;
+	border: 1px solid var(--light-border-color);
+	outline: none;
+	background-color: var(--bg-color);
+	color: var(--light-text-color);
+	transition: var(--transition);
+}
+
+.default {
+	&:focus {
+		border-color: var(--primary-color);
+	}
+}
+
+.outlined {
+	background-color: transparent;
+	border: 1px solid var(--primary-color);
+	color: var(--light-text-color);
+
+	&:focus {
+		border-color: var(--primary-color);
+		box-shadow: 0 0 0 2px rgba(84, 116, 180, 0.3);
+	}
+}
+
+.underlined {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid var(--primary-color);
+	border-radius: 0px;
+	color: var(--light-text-color);
+
+	&:focus {
+		border-color: var(--primary-color-dark);
+		box-shadow: none;
+	}
+}
+
+.flush {
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	color: var(--light-text-color);
+
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.filled {
+	background-color: var(--inverted-secondary-color);
+	color: var(--light-text-color);
+	transition: var(--transition);
+
+	&:focus {
+		border: 1px solid var(--primary-color);
+	}
+}
+
+.LeftSection,
+.RightSection {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	color: var(--primary-color-dark);
+	pointer-events: auto;
+}
+
+.LeftSection {
+	left: 8px;
+}
+
+.RightSection {
+	right: 8px;
+}
+
+.InputContainer .Input {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
