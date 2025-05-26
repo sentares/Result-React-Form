@@ -11,7 +11,7 @@ import {
 	minLength,
 } from '@/core/helpers/validate'
 
-interface RegisterOptions {
+export interface RegisterOptions {
 	name: string
 	nickname: string
 	email: string
