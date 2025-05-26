@@ -11,11 +11,10 @@ export interface LoginOptions {
 
 interface LoginProps {
 	onSubmit: (options: LoginOptions) => void
+	onSwitch: () => void
 }
 
-function Login(props: LoginProps) {
-	const { onSubmit } = props
-
+function Login({ onSubmit, onSwitch }: LoginProps) {
 	const formRef = useRef<HTMLFormElement>(null)
 
 	const [inputs, setInputs] = useState<LoginOptions>({
@@ -120,9 +119,11 @@ function Login(props: LoginProps) {
 				<Button type='submit'>Войти</Button>
 			</form>
 
-			<div className={cls.RegButton}>
+			<div className={cls.SwitchBtn}>
 				<span>или</span>
-				<Button variant='OUTLINE'>Зарегистрироваться</Button>
+				<Button type='button' variant='OUTLINE' onClick={onSwitch}>
+					Зарегистрироваться
+				</Button>
 			</div>
 		</div>
 	)
