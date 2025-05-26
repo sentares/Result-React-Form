@@ -3,6 +3,13 @@ import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import cls from './Register.module.scss'
 import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
+import {
+	isEmail,
+	isMatch,
+	isRequired,
+	isUsername,
+	minLength,
+} from '@/core/helpers/validate'
 
 interface RegisterOptions {
 	name: string
@@ -49,11 +56,18 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 		}
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
+	const validate = () => {
+		const newErrors: Partial<RegisterOptions> = {
+			name: isRequired(inputs.name),
+			nickname: isRequired(inputs.nickname) || isUsername(inputs.nickname),
+			email: isRequired(inputs.email) || isEmail(inputs.email),
+			password: minLength(inputs.password, 6),
+			confirmPassword: isMatch(inputs.confirmPassword, inputs.password),
+		}
 
-		formRef.current?.reset()
-		onSubmit(inputs)
+		setErrors(newErrors)
+
+		return !Object.values(newErrors).some(Boolean)
 	}
 
 	const handleReset = () => {
@@ -66,6 +80,16 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 			confirmPassword: '',
 		})
 		setErrors({})
+	}
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault()
+
+		if (!validate()) return
+
+		onSubmit(inputs)
+		formRef.current?.reset()
+		handleReset()
 	}
 
 	const togglePasswordVisibility = (e: React.MouseEvent) => {
@@ -133,6 +157,7 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 							Женский
 						</label>
 					</div>
+					{errors.gender && <div className={cls.Error}>{errors.gender}</div>}
 				</div>
 
 				<Input
