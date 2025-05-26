@@ -1,3 +1,4 @@
+import { isEmail, minLength } from '@/core/helpers/validate'
 import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
@@ -42,19 +43,19 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 	}
 
 	const validate = () => {
-		const newErrors: Partial<LoginOptions> = {}
-
-		if (!inputs.email || !/\S+@\S+\.\S+/.test(inputs.email)) {
-			newErrors.email = 'Введите корректный email'
-		}
-
-		if (!inputs.password || inputs.password.length < 6) {
-			newErrors.password = 'Пароль должен быть не менее 6 символов'
+		const newErrors: Partial<LoginOptions> = {
+			email: isEmail(inputs.email),
+			password: minLength(inputs.password, 6),
 		}
 
 		setErrors(newErrors)
 
-		return Object.keys(newErrors).length === 0
+		return !Object.values(newErrors).some(Boolean)
+	}
+
+	const handleReset = () => {
+		setInputs({ email: '', password: '' })
+		setErrors({})
 	}
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -64,11 +65,6 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 
 		formRef.current?.reset()
 		onSubmit(inputs)
-	}
-
-	const handleReset = () => {
-		setInputs({ email: '', password: '' })
-		setErrors({})
 	}
 
 	const togglePasswordVisibility = (e: React.MouseEvent) => {
