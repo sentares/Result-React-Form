@@ -1,0 +1,123 @@
+.Button {
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	font-weight: 600;
+	border-radius: var(--btn-radius);
+	transition: background-color var(--transition), color var(--transition),
+		box-shadow var(--transition), transform var(--transition);
+	user-select: none;
+	border: none;
+	outline: none;
+}
+
+.default {
+	background: var(--primary-color);
+	color: white;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.default:hover:not(.disabled) {
+	background: var(--primary-color-dark);
+}
+
+.outline {
+	background: transparent;
+	color: var(--primary-color);
+	border: 2px solid var(--primary-color);
+}
+
+.outline:hover:not(.disabled) {
+	background: var(--primary-color-light);
+	color: white;
+}
+
+.background {
+	background: var(--inverted-bg-color);
+	color: var(--inverted-secondary-color);
+}
+
+.background:hover:not(.disabled) {
+	background: var(--secondary-color);
+	color: white;
+}
+
+.light {
+	background: var(--light-bg-color);
+	color: var(--light-text-color);
+	border: 1px solid var(--light-border-color);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.light:hover:not(.disabled) {
+	background: var(--light-hover-bg);
+	color: var(--light-hover-text);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Квадратные варианты */
+.square {
+	padding: 0;
+	border-radius: 8px;
+}
+
+/* Размеры квадратных */
+.square.size_m {
+	width: 32px;
+	height: 32px;
+	font-size: 16px;
+}
+.square.size_l {
+	width: 40px;
+	height: 40px;
+	font-size: 18px;
+}
+.square.size_xl {
+	width: 48px;
+	height: 48px;
+	font-size: 20px;
+}
+
+/* Размеры обычных */
+.size_m {
+	font-size: 16px;
+	line-height: 1.3;
+	padding: 0.5rem 1rem;
+}
+.size_l {
+	font-size: 18px;
+	line-height: 1.4;
+	padding: 0.6rem 1.2rem;
+}
+.size_xl {
+	font-size: 20px;
+	line-height: 1.5;
+	padding: 0.8rem 1.6rem;
+}
+
+.radius_xs {
+	border-radius: 2px;
+}
+.radius_sm {
+	border-radius: 4px;
+}
+.radius_md {
+	border-radius: 6px;
+}
+.radius_lg {
+	border-radius: 10px;
+}
+.radius_xl {
+	border-radius: 999px;
+}
+
+/* Состояние disabled */
+.disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	pointer-events: none;
+	box-shadow: none;
+	transform: none;
+}
