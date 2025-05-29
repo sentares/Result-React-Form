@@ -1,8 +1,3 @@
-import { useRef, useState, type ChangeEvent } from 'react'
-import { Button } from '@/ui/button'
-import { Input } from '@/ui/input'
-import cls from './Register.module.scss'
-import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
 import {
 	isEmail,
 	isMatch,
@@ -10,6 +5,17 @@ import {
 	isUsername,
 	minLength,
 } from '@/core/helpers/validate'
+import { Button } from '@/ui/button'
+import { Input } from '@/ui/input'
+import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
+import {
+	useRef,
+	useState,
+	type ChangeEvent,
+	type FormEvent,
+	type MouseEvent,
+} from 'react'
+import cls from './Register.module.scss'
 
 export interface RegisterOptions {
 	name: string
@@ -82,8 +88,8 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 		setErrors({})
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
+	const handleSubmit = (event: FormEvent) => {
+		event.preventDefault()
 
 		if (!validate()) return
 
@@ -92,8 +98,8 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 		handleReset()
 	}
 
-	const togglePasswordVisibility = (e: React.MouseEvent) => {
-		e.preventDefault()
+	const togglePasswordVisibility = (event: MouseEvent) => {
+		event.preventDefault()
 		setShowPassword(prev => !prev)
 	}
 
