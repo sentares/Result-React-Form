@@ -1,4 +1,4 @@
-import LayoutAuth from '@/modules/auth/Layout'
+import LayoutAuth from './layouts/auth/Layout'
 
 function App() {
 	return (

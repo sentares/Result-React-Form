@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { type LoginOptions } from '@/modules/auth/login'
+import { type RegisterOptions } from '@/modules/auth/register'
+import Login from '@/modules/auth/login/Login'
+import Register from '@/modules/auth/register/Register'
 import cls from './Layout.module.scss'
-import Login, { type LoginOptions } from './login/Login'
-import Register, { type RegisterOptions } from './register/Register'
 
 function LayoutAuth() {
 	const [activeAuth, setActiveAuth] = useState<'login' | 'register'>('login')
