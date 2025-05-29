@@ -2,8 +2,14 @@ import { isEmail, minLength } from '@/core/helpers/validate'
 import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
-import { useRef, useState, type ChangeEvent } from 'react'
-import cls from './Login.module.scss'
+import {
+	useRef,
+	useState,
+	type ChangeEvent,
+	type FormEvent,
+	type MouseEvent,
+} from 'react'
+import styles from './Login.module.scss'
 
 export interface LoginOptions {
 	email: string
@@ -58,8 +64,8 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 		setErrors({})
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
+	const handleSubmit = (event: FormEvent) => {
+		event.preventDefault()
 
 		if (!validate()) return
 
@@ -67,15 +73,15 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 		onSubmit(inputs)
 	}
 
-	const togglePasswordVisibility = (e: React.MouseEvent) => {
-		e.preventDefault()
+	const togglePasswordVisibility = (event: MouseEvent) => {
+		event.preventDefault()
 		setShowPassword(prev => !prev)
 	}
 
 	return (
-		<div className={cls.Login}>
+		<div className={styles.Login}>
 			<form
-				className={cls.LoginForm}
+				className={styles.LoginForm}
 				ref={formRef}
 				onSubmit={handleSubmit}
 				onChange={handleChange}
@@ -115,7 +121,7 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 				<Button type='submit'>Войти</Button>
 			</form>
 
-			<div className={cls.SwitchBtn}>
+			<div className={styles.SwitchBtn}>
 				<span>или</span>
 				<Button type='button' variant='OUTLINE' onClick={onSwitch}>
 					Зарегистрироваться

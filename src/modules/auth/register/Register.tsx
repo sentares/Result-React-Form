@@ -1,8 +1,3 @@
-import { useRef, useState, type ChangeEvent } from 'react'
-import { Button } from '@/ui/button'
-import { Input } from '@/ui/input'
-import cls from './Register.module.scss'
-import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
 import {
 	isEmail,
 	isMatch,
@@ -10,6 +5,17 @@ import {
 	isUsername,
 	minLength,
 } from '@/core/helpers/validate'
+import { Button } from '@/ui/button'
+import { Input } from '@/ui/input'
+import { IconAt, IconEye, IconEyeOff, IconLock } from '@tabler/icons-react'
+import {
+	useRef,
+	useState,
+	type ChangeEvent,
+	type FormEvent,
+	type MouseEvent,
+} from 'react'
+import styles from './Register.module.scss'
 
 export interface RegisterOptions {
 	name: string
@@ -82,8 +88,8 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 		setErrors({})
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
+	const handleSubmit = (event: FormEvent) => {
+		event.preventDefault()
 
 		if (!validate()) return
 
@@ -92,16 +98,16 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 		handleReset()
 	}
 
-	const togglePasswordVisibility = (e: React.MouseEvent) => {
-		e.preventDefault()
+	const togglePasswordVisibility = (event: MouseEvent) => {
+		event.preventDefault()
 		setShowPassword(prev => !prev)
 	}
 
 	return (
-		<div className={cls.Register}>
+		<div className={styles.Register}>
 			<form
 				ref={formRef}
-				className={cls.RegisterForm}
+				className={styles.RegisterForm}
 				onSubmit={handleSubmit}
 				onChange={handleChange}
 				onReset={handleReset}
@@ -135,9 +141,9 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 					leftSection={<IconAt size={16} />}
 				/>
 
-				<div className={cls.RadioGroup}>
-					<span className={cls.Label}>Пол</span>
-					<div className={cls.RadioOptions}>
+				<div className={styles.RadioGroup}>
+					<span className={styles.Label}>Пол</span>
+					<div className={styles.RadioOptions}>
 						<label>
 							<Input
 								type='radio'
@@ -157,7 +163,7 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 							Женский
 						</label>
 					</div>
-					{errors.gender && <div className={cls.Error}>{errors.gender}</div>}
+					{errors.gender && <div className={styles.Error}>{errors.gender}</div>}
 				</div>
 
 				<Input
@@ -199,7 +205,7 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 				<Button type='submit'>Зарегистрироваться</Button>
 			</form>
 
-			<div className={cls.SwitchBtn}>
+			<div className={styles.SwitchBtn}>
 				<span>Или</span>
 				<Button variant='OUTLINE' onClick={onSwitch}>
 					Войти

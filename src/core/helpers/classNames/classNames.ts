@@ -3,12 +3,12 @@ export interface Mods {
 }
 
 export function classNames(
-	cls: string,
+	classNames: string,
 	mods: Mods = {},
 	additional: string[] = []
 ): string {
 	return [
-		cls,
+		classNames,
 		...additional.filter(Boolean),
 		...Object.entries(mods)
 			.filter(([_, value]) => Boolean(value))
