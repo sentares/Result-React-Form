@@ -9,7 +9,7 @@ import {
 	type FormEvent,
 	type MouseEvent,
 } from 'react'
-import cls from './Login.module.scss'
+import styles from './Login.module.scss'
 
 export interface LoginOptions {
 	email: string
@@ -79,9 +79,9 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 	}
 
 	return (
-		<div className={cls.Login}>
+		<div className={styles.Login}>
 			<form
-				className={cls.LoginForm}
+				className={styles.LoginForm}
 				ref={formRef}
 				onSubmit={handleSubmit}
 				onChange={handleChange}
@@ -121,7 +121,7 @@ function Login({ onSubmit, onSwitch }: LoginProps) {
 				<Button type='submit'>Войти</Button>
 			</form>
 
-			<div className={cls.SwitchBtn}>
+			<div className={styles.SwitchBtn}>
 				<span>или</span>
 				<Button type='button' variant='OUTLINE' onClick={onSwitch}>
 					Зарегистрироваться

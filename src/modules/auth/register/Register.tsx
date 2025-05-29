@@ -15,7 +15,7 @@ import {
 	type FormEvent,
 	type MouseEvent,
 } from 'react'
-import cls from './Register.module.scss'
+import styles from './Register.module.scss'
 
 export interface RegisterOptions {
 	name: string
@@ -104,10 +104,10 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 	}
 
 	return (
-		<div className={cls.Register}>
+		<div className={styles.Register}>
 			<form
 				ref={formRef}
-				className={cls.RegisterForm}
+				className={styles.RegisterForm}
 				onSubmit={handleSubmit}
 				onChange={handleChange}
 				onReset={handleReset}
@@ -141,9 +141,9 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 					leftSection={<IconAt size={16} />}
 				/>
 
-				<div className={cls.RadioGroup}>
-					<span className={cls.Label}>Пол</span>
-					<div className={cls.RadioOptions}>
+				<div className={styles.RadioGroup}>
+					<span className={styles.Label}>Пол</span>
+					<div className={styles.RadioOptions}>
 						<label>
 							<Input
 								type='radio'
@@ -163,7 +163,7 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 							Женский
 						</label>
 					</div>
-					{errors.gender && <div className={cls.Error}>{errors.gender}</div>}
+					{errors.gender && <div className={styles.Error}>{errors.gender}</div>}
 				</div>
 
 				<Input
@@ -205,7 +205,7 @@ function Register({ onSubmit, onSwitch }: RegisterProps) {
 				<Button type='submit'>Зарегистрироваться</Button>
 			</form>
 
-			<div className={cls.SwitchBtn}>
+			<div className={styles.SwitchBtn}>
 				<span>Или</span>
 				<Button variant='OUTLINE' onClick={onSwitch}>
 					Войти

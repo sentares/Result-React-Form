@@ -1,6 +1,6 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
-import cls from './Input.module.scss'
 import { classNames, type Mods } from '@/core/helpers/classNames'
+import styles from './Input.module.scss'
 
 export enum InputVariant {
 	DEFAULT = 'default',
@@ -62,16 +62,16 @@ const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	} = props
 
 	const wrapperMods: Mods = {
-		[cls[InputSize[size]]]: true,
-		[cls[InputRadius[radius]]]: true,
-		[cls.disabled]: !!disabled,
+		[styles[InputSize[size]]]: true,
+		[styles[InputRadius[radius]]]: true,
+		[styles.disabled]: !!disabled,
 	}
 
 	const inputMods: Mods = {
-		[cls[InputVariant[variant]]]: true,
-		[cls[InputSize[size]]]: true,
-		[cls[InputRadius[radius]]]: true,
-		[cls.disabled]: !!disabled,
+		[styles[InputVariant[variant]]]: true,
+		[styles[InputSize[size]]]: true,
+		[styles[InputRadius[radius]]]: true,
+		[styles.disabled]: !!disabled,
 	}
 
 	const wrapperStyle: React.CSSProperties = {
@@ -82,26 +82,26 @@ const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	return (
 		<div
 			className={classNames(
-				cls.InputWrapper,
-				{ ...wrapperMods, [cls.error]: !!error },
+				styles.InputWrapper,
+				{ ...wrapperMods, [styles.error]: !!error },
 				[className]
 			)}
 			style={wrapperStyle}
 		>
 			{label && (
-				<label className={classNames(cls.Label, wrapperMods)}>
+				<label className={classNames(styles.Label, wrapperMods)}>
 					{label} {withAsterisk && <span className='asterisk'>*</span>}
 				</label>
 			)}
 			{description && (
-				<label className={classNames(cls.Description, wrapperMods)}>
+				<label className={classNames(styles.Description, wrapperMods)}>
 					{description}
 				</label>
 			)}
-			<div className={classNames(cls.InputContainer, wrapperMods)}>
+			<div className={classNames(styles.InputContainer, wrapperMods)}>
 				{leftSection && (
 					<div
-						className={classNames(cls.LeftSection, wrapperMods)}
+						className={classNames(styles.LeftSection, wrapperMods)}
 						style={{ pointerEvents: leftSectionPointerEvents }}
 					>
 						{leftSection}
@@ -109,13 +109,13 @@ const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 				)}
 				<input
 					disabled={disabled}
-					className={classNames(cls.Input, inputMods)}
+					className={classNames(styles.Input, inputMods)}
 					ref={ref}
 					{...rest}
 				/>
 				{rightSection && (
 					<div
-						className={classNames(cls.RightSection, wrapperMods)}
+						className={classNames(styles.RightSection, wrapperMods)}
 						style={{ pointerEvents: rightSectionPointerEvents }}
 					>
 						{rightSection}
@@ -123,7 +123,7 @@ const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 				)}
 			</div>
 			{error && (
-				<label className={classNames(cls.Error, wrapperMods)}>{error}</label>
+				<label className={classNames(styles.Error, wrapperMods)}>{error}</label>
 			)}
 		</div>
 	)

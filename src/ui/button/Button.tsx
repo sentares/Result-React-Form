@@ -1,6 +1,6 @@
 import { classNames, type Mods } from '@/core/helpers/classNames'
 import { memo, type ButtonHTMLAttributes, type ReactNode } from 'react'
-import cls from './Button.module.scss'
+import styles from './Button.module.scss'
 
 export enum ButtonVariant {
 	DEFAULT = 'default',
@@ -47,17 +47,17 @@ const ButtonBase = (props: ButtonProps) => {
 	} = props
 
 	const mods: Mods = {
-		[cls[ButtonVariant[variant]]]: true,
-		[cls.square]: square,
-		[cls[ButtonSize[size]]]: true,
-		[cls[ButtonRadius[radius]]]: true,
-		[cls.disabled]: disabled,
+		[styles[ButtonVariant[variant]]]: true,
+		[styles.square]: square,
+		[styles[ButtonSize[size]]]: true,
+		[styles[ButtonRadius[radius]]]: true,
+		[styles.disabled]: disabled,
 	}
 
 	return (
 		<button
 			type={type}
-			className={classNames(cls.Button, mods, [className])}
+			className={classNames(styles.Button, mods, [className])}
 			disabled={disabled}
 			{...otherProps}
 		>
